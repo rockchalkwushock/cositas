@@ -40,7 +40,11 @@ defmodule App.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      # Absinthe (GraphQL Dependencies)
+      {:absinthe, "~> 1.6.6"},
+      {:absinthe_plug, "~> 1.5.8"},
+      {:corsica, "~> 1.1.3"}
     ]
   end
 
@@ -55,7 +59,8 @@ defmodule App.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      start: ["phx.server"]
     ]
   end
 end

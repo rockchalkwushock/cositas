@@ -5,7 +5,16 @@ defmodule AppWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", AppWeb do
+  scope "/" do
     pipe_through :api
+
+    forward "/api", Absinthe.Plug,
+        schema: AppWeb.Schema
+
+    if Mix.env() == :dev do
+      forward "/graphiql", Absinthe.Plug.GraphiQL,
+          schema: AppWeb.Schema,
+          interface: :playground
+    end
   end
 end

@@ -12,16 +12,6 @@ defmodule AppWeb.Endpoint do
 
   # socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
-  # Serve at "/" the static files from "priv/static" directory.
-  #
-  # You should set gzip to true if you are running phx.digest
-  # when deploying your static files in production.
-  plug Plug.Static,
-    at: "/",
-    from: :server,
-    gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
-
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
   if code_reloading? do
@@ -31,6 +21,14 @@ defmodule AppWeb.Endpoint do
 
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+
+  # Make use of Corsica for CORS:
+  # TODO: Secure origins later.
+  plug Corsica,
+    allow_headers: ["content-type", "accept"],
+    allow_methods: ["GET", "POST"],
+    max_age: 86400,
+    origins: "*"
 
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
