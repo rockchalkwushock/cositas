@@ -1,0 +1,20 @@
+mutation SignIn($inputs: SignInInputs!) {
+  res: signIn(inputs: $inputs) {
+    data {
+      token
+      user {
+        createdAt
+        email
+        firstName
+        id
+        lastName
+        modifiedAt
+        username
+      }
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

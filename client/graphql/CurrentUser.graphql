@@ -1,0 +1,11 @@
+query CurrentUser {
+  me {
+    createdAt
+    email
+    firstName
+    id
+    lastName
+    modifiedAt
+    username
+  }
+}
