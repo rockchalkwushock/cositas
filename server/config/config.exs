@@ -11,6 +11,10 @@ config :server,
   namespace: App,
   ecto_repos: [App.Repo]
 
+# Advanced configuration for database.
+config :server, App.Repo,
+  migration_timestamps: [inserted_at: :created_at, type: :utc_datetime_usec, updated_at: :modified_at]
+
 # Configures the endpoint
 config :server, AppWeb.Endpoint,
   url: [host: "localhost"],
