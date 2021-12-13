@@ -3,17 +3,18 @@ defmodule AppWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug AppWeb.Plugs.SetCurrentUser
   end
 
   scope "/" do
     pipe_through :api
 
     forward "/api", Absinthe.Plug,
-        schema: AppWeb.Schema
+        schema: AppWeb.Schema.Schema
 
     if Mix.env() == :dev do
       forward "/graphiql", Absinthe.Plug.GraphiQL,
-          schema: AppWeb.Schema,
+          schema: AppWeb.Schema.Schema,
           interface: :playground
     end
   end
