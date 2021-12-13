@@ -23,6 +23,7 @@ specifiers:
   prettier: ~2.5.1
   react: ~17.0.2
   react-dom: ~17.0.2
+  react-hook-form: ~7.21.2
   react-query: ~3.34.2
   sass: ~1.45.0
   tailwindcss: ~3.0.1
@@ -33,6 +34,7 @@ dependencies:
   next: 12.0.7_56f80e3d7f33890c0a22e3eb64e13f43
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-hook-form: 7.21.2_react@17.0.2
   react-query: 3.34.2_react-dom@17.0.2+react@17.0.2
   sass: 1.45.0
 
@@ -5825,6 +5827,15 @@ packages:
       object-assign: 4.1.1
       react: 17.0.2
       scheduler: 0.20.2
+    dev: false
+
+  /react-hook-form/7.21.2_react@17.0.2:
+    resolution: {integrity: sha512-G2qcUsZSoVolLMZi83nRcZR3VquUWI8lgAfMUyL2teL7vAFPKKwPMfKv2+tXFZjBMzNXHb+HxARdUGcETo8IqQ==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17
+    dependencies:
+      react: 17.0.2
     dev: false
 
   /react-is/16.13.1:
