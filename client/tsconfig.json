@@ -17,6 +17,7 @@
     "noUnusedParameters": true,
     "paths": {
       "@components/*": ["components/*"],
+      "@contexts/*": ["contexts/*"],
       "@graphql/*": ["graphql/*"],
       "@hooks/*": ["hooks/*"],
       "@interfaces/*": ["interfaces/*"],
