@@ -1,3 +1,5 @@
+import { isServer } from '@utils/helpers'
+
 let endpointUrl: string
 
 if (typeof process.env.NEXT_PUBLIC_API_ENDPOINT === 'undefined') {
@@ -19,11 +21,19 @@ export const fetcher = <TData, TVariables>(
   variables?: TVariables
 ): (() => Promise<TData>) => {
   return async () => {
+    let headers: HeadersInit | undefined
+    if (!isServer) {
+      const token = sessionStorage.getItem('x')
+      headers = token
+        ? {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          }
+        : { 'Content-Type': 'application/json' }
+    }
     const res = await fetch(endpointUrl, {
       body: JSON.stringify({ query, variables }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       method: 'POST',
     })
 
