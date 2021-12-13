@@ -22,14 +22,6 @@ defmodule AppWeb.Endpoint do
   plug Plug.RequestId
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
-  # Make use of Corsica for CORS:
-  # TODO: Secure origins later.
-  plug Corsica,
-    allow_headers: ["content-type", "accept"],
-    allow_methods: ["GET", "POST"],
-    max_age: 86400,
-    origins: "*"
-
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
@@ -38,5 +30,13 @@ defmodule AppWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  # Make use of Corsica for CORS:
+  # TODO: Secure origins later.
+  plug Corsica,
+    allow_credentials: true,
+    allow_headers: :all,
+    allow_methods: ["GET", "POST"],
+    max_age: 86400,
+    origins: ["http://localhost:3000"]
   plug AppWeb.Router
 end
