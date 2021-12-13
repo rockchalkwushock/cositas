@@ -44,7 +44,8 @@ defmodule App.MixProject do
       # Absinthe (GraphQL Dependencies)
       {:absinthe, "~> 1.6.6"},
       {:absinthe_plug, "~> 1.5.8"},
-      {:corsica, "~> 1.1.3"}
+      {:corsica, "~> 1.1.3"},
+      {:bcrypt_elixir, "~> 2.0"}
     ]
   end
 
