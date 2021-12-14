@@ -29,7 +29,7 @@ defmodule AppWeb.Schema.Mutation.SigninTest do
       first_name: "Bob",
       last_name: "Taylor",
       password: "hello-World123**",
-      username: "bt101"
+      username: "bTaylor101"
     }
 
     assert {:ok, user} = App.Accounts.create_user(attrs)

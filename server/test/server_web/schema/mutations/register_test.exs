@@ -29,7 +29,7 @@ defmodule AppWeb.Schema.Mutation.RegisterTest do
       first_name: "Bob",
       last_name: "Taylor",
       password: "hello-World123**",
-      username: "bt101"
+      username: "bTaylor101"
     }
     conn = post(build_conn(), "/api", %{
       query: @query,

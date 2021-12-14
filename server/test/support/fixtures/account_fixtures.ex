@@ -3,16 +3,17 @@ defmodule App.AccountsFixtures do
   This module defines test helpers for creating
   entities via the `App.Accounts` context.
   """
+  alias Faker
 
   @doc """
   Generate a unique user email.
   """
-  def unique_user_email, do: "some email#{System.unique_integer([:positive])}"
+  def unique_user_email, do: Faker.Internet.email()
 
   @doc """
   Generate a unique user username.
   """
-  def unique_user_username, do: "some username#{System.unique_integer([:positive])}"
+  def unique_user_username, do: Faker.Internet.user_name()
 
   @doc """
   Generate a user.
@@ -21,11 +22,11 @@ defmodule App.AccountsFixtures do
     {:ok, user} =
       attrs
       |> Enum.into(%{
-        email: "tim@gmail.com",
-        first_name: "Tim",
-        last_name: "Taylor",
+        email: unique_user_email(),
+        first_name: Faker.Person.first_name(),
+        last_name: Faker.Person.last_name(),
         password: "hello-World123**",
-        username: "timTayTayTay"
+        username: unique_user_username()
       })
       |> App.Accounts.create_user()
 
