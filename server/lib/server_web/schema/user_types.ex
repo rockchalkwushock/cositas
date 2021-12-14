@@ -6,7 +6,6 @@ defmodule AppWeb.Schema.UserTypes do
   alias AppWeb.Resolvers
   alias AppWeb.Schema.Middleware
 
-  import_types(AppWeb.Schema.InternalTypes)
   import_types(AppWeb.Schema.SessionTypes)
 
   # Types
@@ -24,6 +23,8 @@ defmodule AppWeb.Schema.UserTypes do
     field :last_name, non_null(:string)
     @desc "Date user was last modified."
     field :modified_at, non_null(:string)
+    @desc "User's projects."
+    field :projects, list_of(:project)
     @desc "User's username."
     field :username, non_null(:string)
   end
@@ -41,19 +42,19 @@ defmodule AppWeb.Schema.UserTypes do
   # Mutations
   @desc "User Mutations"
   object :user_mutations do
-     @desc "Register a new user account."
-      field :register, :authentication_payload do
-        arg :inputs, non_null(:registration_inputs)
-        resolve &Resolvers.Accounts.register/3
-        middleware Middleware.HandleError
-      end
+    @desc "Register a new user account."
+    field :register, :authentication_payload do
+      arg :inputs, non_null(:registration_inputs)
+      resolve &Resolvers.Accounts.register/3
+      middleware Middleware.HandleError
+    end
 
-      @desc "Sign in a user"
-      field :sign_in, :authentication_payload do
-        arg :inputs, non_null(:sign_in_inputs)
-        resolve &Resolvers.Accounts.sign_in/3
-        middleware Middleware.HandleError
-      end
+    @desc "Sign in a user"
+    field :sign_in, :authentication_payload do
+      arg :inputs, non_null(:sign_in_inputs)
+      resolve &Resolvers.Accounts.sign_in/3
+      middleware Middleware.HandleError
+    end
   end
 
   # Mutation Inupts
