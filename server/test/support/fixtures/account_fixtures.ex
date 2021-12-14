@@ -21,12 +21,11 @@ defmodule App.AccountsFixtures do
     {:ok, user} =
       attrs
       |> Enum.into(%{
-        email: unique_user_email(),
-        first_name: "some first_name",
-        hashed_password: "some hashed_password",
-        last_name: "some last_name",
-        password: "some password",
-        username: unique_user_username()
+        email: "tim@gmail.com",
+        first_name: "Tim",
+        last_name: "Taylor",
+        password: "hello-World123**",
+        username: "timTayTayTay"
       })
       |> App.Accounts.create_user()
 

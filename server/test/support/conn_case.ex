@@ -28,6 +28,11 @@ defmodule AppWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint AppWeb.Endpoint
+
+      defp auth_user(conn, user) do
+        token = AppWeb.AuthToken.sign(user)
+        put_req_header(conn, "authorization", "Bearer #{token}")
+      end
     end
   end
 
