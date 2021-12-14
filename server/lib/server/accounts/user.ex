@@ -26,6 +26,7 @@ defmodule App.Accounts.User do
     |> cast(attrs, @required_fields)
     |> validate_required(@required_fields)
     |> validate_email()
+    |> validate_username()
     |> validate_password(opts)
   end
 
