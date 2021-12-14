@@ -2,8 +2,10 @@ defmodule App.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-    @required_fields [:email, :first_name, :last_name, :password, :username]
-    @timestamps_opts [inserted_at: :created_at, type: :utc_datetime_usec, updated_at: :modified_at]
+  alias App.Content.Project
+
+  @required_fields [:email, :first_name, :last_name, :password, :username]
+  @timestamps_opts [inserted_at: :created_at, type: :utc_datetime_usec, updated_at: :modified_at]
 
   schema "users" do
     field :email, :string
@@ -12,6 +14,8 @@ defmodule App.Accounts.User do
     field :last_name, :string
     field :password, :string, virtual: true, redact: true
     field :username, :string
+
+    has_many :projects, Project, foreign_key: :owner_id
 
     timestamps(@timestamps_opts)
   end
