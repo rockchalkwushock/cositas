@@ -45,7 +45,8 @@ defmodule App.MixProject do
       {:absinthe, "~> 1.6.6"},
       {:absinthe_plug, "~> 1.5.8"},
       {:corsica, "~> 1.1.3"},
-      {:bcrypt_elixir, "~> 2.0"}
+      {:bcrypt_elixir, "~> 2.0"},
+      {:faker, "~> 0.17", only: [:dev, :test]}
     ]
   end
 
