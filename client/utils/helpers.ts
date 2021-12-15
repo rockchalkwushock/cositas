@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { compareAsc, format } from 'date-fns'
 
 export const isServer = typeof window === 'undefined'
 
@@ -13,6 +13,10 @@ const formatsMap = {
   'short-localized': 'PP',
   'short-time-with-date-localized': 'P ppp',
   'time-localized': 'ppp',
+}
+
+export const hasBeenModified = (modifiedAt: string, createdAt: string) => {
+  return Boolean(compareAsc(new Date(modifiedAt), new Date(createdAt)))
 }
 
 export const formatDateTime = (
