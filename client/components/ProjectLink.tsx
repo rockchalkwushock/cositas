@@ -12,7 +12,6 @@ export const ProjectLink = React.forwardRef<
   ProjectLinkProps
 >(({ children, id, onClick, ...rest }, ref) => {
   const { query } = useRouter()
-  console.log('ProjectLink', query, `/u/${query.userId}/p/${id}/`)
   return (
     <Link href={`/u/${query.userId}/p/${id}/`} passHref>
       <a {...rest} onClick={onClick} ref={ref}>
