@@ -15,18 +15,19 @@ defmodule AppWeb.Resolvers.Content do
         {:error, changeset}
       {:ok, project} ->
         {:ok, project}
+        {:ok, %{data: project}}
     end
   end
 
   def edit_project(_, %{inputs: inputs}, %{context: %{current_user: user}}) do
-    project = Content.get_project!(inputs["id"])
+    project = Content.get_project!(inputs[:id])
 
     if (project.owner_id == user.id) do
       case Content.update_project(project, inputs) do
         {:error, changeset} ->
           {:error, changeset}
         {:ok, project} ->
-          {:ok, project}
+          {:ok, %{data: project}}
       end
     else
       {
@@ -37,14 +38,14 @@ defmodule AppWeb.Resolvers.Content do
   end
 
   def remove_project(_, %{inputs: inputs}, %{context: %{current_user: user}}) do
-    project = Content.get_project!(inputs["id"])
+    project = Content.get_project!(inputs[:id])
 
     if (project.owner_id == user.id) do
       case Content.delete_project(project) do
         {:error, changeset} ->
           {:error, changeset}
         {:ok, project} ->
-          {:ok, project}
+          {:ok, %{data: project}}
       end
     else
       {
