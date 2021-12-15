@@ -4,7 +4,7 @@ defmodule App.Content.Project do
 
   alias App.Accounts.User
 
-  @optional_fields [:archived_at, :deleted_at]
+  @optional_fields [:archived_at, :deleted_at, :status]
   @required_fields [:end_date, :start_date, :title]
   @timestamps_opts [inserted_at: :created_at, type: :utc_datetime_usec, updated_at: :modified_at]
 
