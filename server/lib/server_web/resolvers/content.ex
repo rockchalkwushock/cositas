@@ -19,6 +19,29 @@ defmodule AppWeb.Resolvers.Content do
     end
   end
 
+  def archive_project(_, %{inputs: inputs}, %{context: %{current_user: user}}) do
+    project = Content.get_project!(inputs[:id])
+
+    attrs = %{
+      archived_at: DateTime.utc_now(),
+      status: :archived
+    }
+
+    if (project.owner_id == user.id) do
+      case Content.update_project(project, attrs) do
+        {:error, changeset} ->
+          {:error, changeset}
+        {:ok, project} ->
+          {:ok, %{data: project}}
+      end
+    else
+      {
+        :error,
+        message: "You cannot edit this project."
+      }
+    end
+  end
+
   def edit_project(_, %{inputs: inputs}, %{context: %{current_user: user}}) do
     project = Content.get_project!(inputs[:id])
 

@@ -63,6 +63,13 @@ defmodule AppWeb.Schema.ProjectTypes do
       resolve &Resolvers.Content.add_project/3
       middleware Middleware.HandleError
     end
+    @desc "Archive a Project"
+    field :archive_project, :project_payload do
+      arg :inputs, non_null(:archive_project_inputs)
+      middleware Middleware.Authenticate
+      resolve &Resolvers.Content.archive_project/3
+      middleware Middleware.HandleError
+    end
     @desc "Edit a Project"
     field :edit_project, :project_payload do
       arg :inputs, non_null(:edit_project_inputs)
@@ -85,6 +92,11 @@ defmodule AppWeb.Schema.ProjectTypes do
     field :end_date, non_null(:string)
     field :start_date, non_null(:string)
     field :title, non_null(:string)
+  end
+
+  @desc "Inputs for Archiving a Project."
+  input_object :archive_project_inputs do
+    field :id, non_null(:string)
   end
 
   @desc "Inputs for Editing a Project."
