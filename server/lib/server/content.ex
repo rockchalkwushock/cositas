@@ -9,6 +9,22 @@ defmodule App.Content do
   alias App.Accounts.User
   alias App.Content.Project
 
+  def data(), do: Dataloader.Ecto.new(Repo, query: &query/2)
+
+  def query(queryable, _params), do: queryable
+
+  def get(queryable, id) do
+    case Repo.get(queryable, id) do
+      nil ->
+        {:error, :not_found}
+
+      result ->
+        {:ok, result}
+    end
+  end
+
+  def get_project(id), do: get(Project, id)
+
   @doc """
   Returns the list of projects.
 

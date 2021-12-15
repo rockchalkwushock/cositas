@@ -2,10 +2,10 @@ defmodule App.Content.Project do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias App.Account.User
+  alias App.Accounts.User
 
   @optional_fields [:archived_at, :deleted_at]
-  @required_fields [:end_date, :owner_id, :start_date, :title]
+  @required_fields [:end_date, :start_date, :title]
   @timestamps_opts [inserted_at: :created_at, type: :utc_datetime_usec, updated_at: :modified_at]
 
   schema "projects" do

@@ -8,6 +8,21 @@ defmodule App.Accounts do
 
   alias App.Accounts.User
 
+  def data(), do: Dataloader.Ecto.new(Repo, query: &query/2)
+
+  def query(queryable, _params), do: queryable
+
+  def get(queryable, id) do
+    case Repo.get(queryable, id) do
+      nil ->
+        {:error, :not_found}
+
+      result ->
+        {:ok, result}
+    end
+  end
+
+  def get_user(id), do: get(User, id)
 
   @doc """
   Gets a single user.

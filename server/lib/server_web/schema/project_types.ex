@@ -3,6 +3,9 @@ defmodule AppWeb.Schema.ProjectTypes do
   Cositas Project Types
   """
   use Absinthe.Schema.Notation
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
+
+  alias App.Accounts
   alias AppWeb.Resolvers
   alias AppWeb.Schema.Middleware
 
@@ -13,20 +16,20 @@ defmodule AppWeb.Schema.ProjectTypes do
   @desc "Project"
   object :project do
     @desc "Date project was archived."
-    field :archived_at, :string
+    field :archived_at, :datetime
     @desc "Date project was created."
-    field :created_at, non_null(:string)
+    field :created_at, non_null(:datetime)
     @desc "Date project was deleted."
-    field :deleted_at, :string
+    field :deleted_at, :datetime
     @desc "Project end date."
-    field :end_date, non_null(:string)
+    field :end_date, non_null(:datetime)
     field :id, non_null(:id)
     @desc "Date user was last modified."
-    field :modified_at, non_null(:string)
+    field :modified_at, non_null(:datetime)
     @desc "Project owner."
-    field :owner_id, non_null(:user)
+    field :owner, non_null(:user), resolve: dataloader(Accounts)
     @desc "Project start date."
-    field :start_date, non_null(:string)
+    field :start_date, non_null(:datetime)
     @desc "Project status."
     field :status, non_null(:project_status)
     @desc "Project title."
@@ -80,7 +83,6 @@ defmodule AppWeb.Schema.ProjectTypes do
   @desc "Inputs for Adding a Project."
   input_object :add_project_inputs do
     field :end_date, non_null(:string)
-    field :owner_id, non_null(:string)
     field :start_date, non_null(:string)
     field :title, non_null(:string)
   end

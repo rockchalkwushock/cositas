@@ -3,6 +3,9 @@ defmodule AppWeb.Schema.UserTypes do
   Cositas User Types
   """
   use Absinthe.Schema.Notation
+  import Absinthe.Resolution.Helpers, only: [dataloader: 1]
+
+  alias App.Content
   alias AppWeb.Resolvers
   alias AppWeb.Schema.Middleware
 
@@ -13,7 +16,7 @@ defmodule AppWeb.Schema.UserTypes do
   @desc "User"
   object :user do
     @desc "Date user was created."
-    field :created_at, non_null(:string)
+    field :created_at, non_null(:datetime)
     @desc "User's email."
     field :email, non_null(:string)
     @desc "User's first name."
@@ -22,9 +25,9 @@ defmodule AppWeb.Schema.UserTypes do
     @desc "User's last name."
     field :last_name, non_null(:string)
     @desc "Date user was last modified."
-    field :modified_at, non_null(:string)
+    field :modified_at, non_null(:datetime)
     @desc "User's projects."
-    field :projects, list_of(:project)
+    field :projects, list_of(:project), resolve: dataloader(Content)
     @desc "User's username."
     field :username, non_null(:string)
   end
