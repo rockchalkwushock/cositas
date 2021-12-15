@@ -20,7 +20,7 @@ const App: React.FC<Props> = ({ Component, pageProps, router }) => {
     <QueryClientProvider client={queryClientRef.current}>
       <SessionProvider>
         <BaseLayout>
-          <Component {...pageProps} key={router.asPath} />
+          <Component {...pageProps} key={router.asPath} query={router.query} />
         </BaseLayout>
       </SessionProvider>
       <ReactQueryDevtools initialIsOpen />
