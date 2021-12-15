@@ -24,6 +24,7 @@ specifiers:
   prettier: ~2.5.1
   react: ~17.0.2
   react-dom: ~17.0.2
+  react-feather: ~2.0.9
   react-hook-form: ~7.21.2
   react-query: ~3.34.2
   sass: ~1.45.0
@@ -36,6 +37,7 @@ dependencies:
   next: 12.0.7_56f80e3d7f33890c0a22e3eb64e13f43
   react: 17.0.2
   react-dom: 17.0.2_react@17.0.2
+  react-feather: 2.0.9_react@17.0.2
   react-hook-form: 7.21.2_react@17.0.2
   react-query: 3.34.2_react-dom@17.0.2+react@17.0.2
   sass: 1.45.0
@@ -5744,7 +5746,6 @@ packages:
       loose-envify: 1.4.0
       object-assign: 4.1.1
       react-is: 16.13.1
-    dev: true
 
   /public-encrypt/4.0.3:
     resolution: {integrity: sha512-zVpa8oKZSz5bTMTFClc1fQOnyyEzpl5ozpi1B5YcvBrdohMjH2rfsBtyXcuNuwjsDIXmBYlF2N5FlJYhR29t8Q==}
@@ -5836,6 +5837,15 @@ packages:
       scheduler: 0.20.2
     dev: false
 
+  /react-feather/2.0.9_react@17.0.2:
+    resolution: {integrity: sha512-yMfCGRkZdXwIs23Zw/zIWCJO3m3tlaUvtHiXlW+3FH7cIT6fiK1iJ7RJWugXq7Fso8ZaQyUm92/GOOHXvkiVUw==}
+    peerDependencies:
+      react: ^16.8.6 || ^17
+    dependencies:
+      prop-types: 15.7.2
+      react: 17.0.2
+    dev: false
+
   /react-hook-form/7.21.2_react@17.0.2:
     resolution: {integrity: sha512-G2qcUsZSoVolLMZi83nRcZR3VquUWI8lgAfMUyL2teL7vAFPKKwPMfKv2+tXFZjBMzNXHb+HxARdUGcETo8IqQ==}
     engines: {node: '>=12.0'}
@@ -5847,7 +5857,6 @@ packages:
 
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
-    dev: true
 
   /react-is/17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
