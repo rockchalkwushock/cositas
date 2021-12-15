@@ -7,20 +7,22 @@ interface Props {}
 export const BaseLayout: React.FC<Props> = ({ children }) => {
   const { session, signOut } = useSession()
   return (
-    <div className="">
-      <nav className="flex items-center justify-between px-6 py-4 bg-gray-700">
+    <>
+      <nav className="flex items-center justify-between py-4">
         <div className="">
-          <h1 className="text-xl text-blue-900">Cositas</h1>
+          <h1 className="text-4xl italic text-indigo-400 underline ">
+            Cositas
+          </h1>
         </div>
         {session && (
           <div className="flex items-center space-x-4">
             <div className="flex flex-col">
-              <p className="font-bold">
+              <p className="font-bold text-indigo-400">
                 {session.user.firstName} {session.user.lastName}{' '}
-                <span className="font-light text-gray-600">
-                  (@{session.user.username})
-                </span>
               </p>
+              <span className="font-light text-indigo-600">
+                @{session.user.username}
+              </span>
             </div>
             <button
               className="px-6 py-2 bg-yellow-200 border-transparent rounded-lg shadow-lg"
@@ -31,7 +33,9 @@ export const BaseLayout: React.FC<Props> = ({ children }) => {
           </div>
         )}
       </nav>
-      <div className="flex flex-col min-h-screen py-8">{children}</div>
-    </div>
+      <div className="flex flex-col items-center justify-center min-h-screen py-8">
+        {children}
+      </div>
+    </>
   )
 }
