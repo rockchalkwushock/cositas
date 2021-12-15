@@ -1,0 +1,13 @@
+mutation ArchiveProject($inputs: ArchiveProjectInputs!) {
+  archiveProject(inputs: $inputs) {
+    data {
+      archivedAt
+      id
+      status
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

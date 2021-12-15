@@ -1,0 +1,11 @@
+mutation RemoveProject($inputs: RemoveProjectInputs!) {
+  removeProject(inputs: $inputs) {
+    data {
+      id
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

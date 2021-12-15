@@ -6,6 +6,9 @@ query CurrentUser {
     id
     lastName
     modifiedAt
+    projects {
+      id
+    }
     username
   }
 }

@@ -1,0 +1,16 @@
+query AllProjects {
+  projects {
+    archivedAt
+    createdAt
+    deletedAt
+    endDate
+    id
+    modifiedAt
+    owner {
+      id
+    }
+    startDate
+    status
+    title
+  }
+}

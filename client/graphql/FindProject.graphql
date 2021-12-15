@@ -1,0 +1,16 @@
+query FindProject($id: String!) {
+  project(id: $id) {
+    archivedAt
+    createdAt
+    endDate
+    modifiedAt
+    owner {
+      firstName
+      id
+      lastName
+    }
+    startDate
+    status
+    title
+  }
+}
