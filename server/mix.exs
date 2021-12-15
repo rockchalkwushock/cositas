@@ -46,6 +46,8 @@ defmodule App.MixProject do
       {:absinthe_plug, "~> 1.5.8"},
       {:corsica, "~> 1.1.3"},
       {:bcrypt_elixir, "~> 2.0"},
+      {:dataloader, "~> 1.0.0"},
+      # Dev & Testing Dependencies
       {:faker, "~> 0.17", only: [:dev, :test]}
     ]
   end
