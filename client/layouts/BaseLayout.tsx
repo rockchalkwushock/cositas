@@ -5,10 +5,10 @@ import { useSession } from '@hooks/useSession'
 interface Props {}
 
 export const BaseLayout: React.FC<Props> = ({ children }) => {
-  const { session, setSession } = useSession()
+  const { session, signOut } = useSession()
   return (
     <div className="">
-      <nav className="flex items-center justify-between px-6 py-4 bg-white">
+      <nav className="flex items-center justify-between px-6 py-4 bg-gray-700">
         <div className="">
           <h1 className="text-xl text-blue-900">Cositas</h1>
         </div>
@@ -24,7 +24,7 @@ export const BaseLayout: React.FC<Props> = ({ children }) => {
             </div>
             <button
               className="px-6 py-2 bg-yellow-200 border-transparent rounded-lg shadow-lg"
-              onClick={() => setSession(undefined)}
+              onClick={signOut}
             >
               Sign Out
             </button>
