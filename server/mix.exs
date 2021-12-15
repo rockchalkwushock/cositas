@@ -64,7 +64,8 @@ defmodule App.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      start: ["phx.server"]
+      start: ["phx.server"],
+      "gen.sdl": ["absinthe.schema.sdl --schema AppWeb.Schema.Schema ../client/schema.graphql"]
     ]
   end
 end
