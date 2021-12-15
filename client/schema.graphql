@@ -1,0 +1,188 @@
+"Represents a schema"
+schema {
+  query: RootQueryType
+  mutation: RootMutationType
+}
+
+"Mutation ErrorType."
+type ErrorType {
+  "Field in which error occurred on."
+  field: String!
+
+  "Validation error message for corresponding field."
+  message: String!
+}
+
+"Inputs for Registering a new user."
+input RegistrationInputs {
+  email: String!
+  firstName: String!
+  lastName: String!
+  password: String!
+  username: String!
+}
+
+"Inputs for Archiving a Project."
+input ArchiveProjectInputs {
+  id: String!
+}
+
+"Status of a Project"
+enum ProjectStatus {
+  "Archived state"
+  ARCHIVED
+
+  "Finished state"
+  FINISHED
+
+  "In Progress state"
+  IN_PROGRESS
+
+  "Unstarted state"
+  UNSTARTED
+}
+
+"User Session"
+type Session {
+  "A user's session token."
+  token: String!
+
+  "The currently authenticated user."
+  user: User!
+}
+
+"Authentication Payload"
+type AuthenticationPayload {
+  data: Session
+  errors: [ErrorType]
+}
+
+"Inputs for Editing a Project."
+input EditProjectInputs {
+  endDate: String
+  id: String!
+  startDate: String
+  status: ProjectStatus
+  title: String
+}
+
+type RootMutationType {
+  "Add a Project"
+  addProject(inputs: AddProjectInputs!): ProjectPayload
+
+  "Archive a Project"
+  archiveProject(inputs: ArchiveProjectInputs!): ProjectPayload
+
+  "Edit a Project"
+  editProject(inputs: EditProjectInputs!): ProjectPayload
+
+  "Remove a Project"
+  removeProject(inputs: RemoveProjectInputs!): ProjectPayload
+
+  "Register a new user account."
+  register(inputs: RegistrationInputs!): AuthenticationPayload
+
+  "Sign in a user"
+  signIn(inputs: SignInInputs!): AuthenticationPayload
+}
+
+type RootQueryType {
+  "Get all projects."
+  projects: [Project]
+
+  "Get a project."
+  project(id: String!): Project
+
+  "Get the currently signed in user."
+  me: User
+}
+
+"""
+The `DateTime` scalar type represents a date and time in the UTC
+timezone. The DateTime appears in a JSON response as an ISO8601 formatted
+string, including UTC timezone ("Z"). The parsed date and time string will
+be converted to UTC if there is an offset.
+"""
+scalar DateTime
+
+"Project"
+type Project {
+  "Date project was archived."
+  archivedAt: DateTime
+
+  "Date project was created."
+  createdAt: DateTime!
+
+  "Date project was deleted."
+  deletedAt: DateTime
+
+  "Project end date."
+  endDate: DateTime!
+
+  id: ID!
+
+  "Date user was last modified."
+  modifiedAt: DateTime!
+
+  "Project owner."
+  owner: User!
+
+  "Project start date."
+  startDate: DateTime!
+
+  "Project status."
+  status: ProjectStatus!
+
+  "Project title."
+  title: String!
+}
+
+"Project Payload"
+type ProjectPayload {
+  data: Project
+  errors: [ErrorType]
+}
+
+"Inputs for Removing a Project."
+input RemoveProjectInputs {
+  id: String!
+}
+
+"Inputs for Adding a Project."
+input AddProjectInputs {
+  endDate: String!
+  startDate: String!
+  title: String!
+}
+
+"Inputs for Authenticating a user."
+input SignInInputs {
+  password: String!
+  username: String!
+}
+
+"User"
+type User {
+  "Date user was created."
+  createdAt: DateTime!
+
+  "User's email."
+  email: String!
+
+  "User's first name."
+  firstName: String!
+
+  id: ID!
+
+  "User's last name."
+  lastName: String!
+
+  "Date user was last modified."
+  modifiedAt: DateTime!
+
+  "User's projects."
+  projects: [Project]
+
+  "User's username."
+  username: String!
+}
