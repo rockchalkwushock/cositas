@@ -12,8 +12,10 @@ defmodule App.AccountsFixtures do
 
   @doc """
   Generate a unique user username.
+  String.slice/2 is used because of validation constraint
+  on `username`, must be less than 18 characters.
   """
-  def unique_user_username, do: Faker.Internet.user_name()
+  def unique_user_username, do: Faker.Internet.user_name() |> String.slice(0..16)
 
   @doc """
   Generate a user.
